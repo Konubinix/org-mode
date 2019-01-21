@@ -8960,7 +8960,7 @@ It also looks at the text of the entry itself."
 	   (with-current-buffer (marker-buffer m)
 	     (symbol-value var))))))
 
-(defun org-agenda-switch-to (&optional delete-other-windows)
+(defun org-agenda-switch-to (&optional delete-other-windows norecord)
   "Go to the Org mode file which contains the item at point.
 When optional argument DELETE-OTHER-WINDOWS is non-nil, the
 displayed Org file fills the frame."
@@ -8974,7 +8974,7 @@ displayed Org file fills the frame."
 	   (buffer (marker-buffer marker))
 	   (pos (marker-position marker)))
       (unless buffer (user-error "Trying to switch to non-existent buffer"))
-      (pop-to-buffer-same-window buffer)
+      (pop-to-buffer-same-window buffer norecord)
       (when delete-other-windows (delete-other-windows))
       (widen)
       (goto-char pos)

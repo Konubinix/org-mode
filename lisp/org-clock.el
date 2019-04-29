@@ -1746,7 +1746,7 @@ Optional argument N tells to change by that many units."
   (run-hooks 'org-clock-cancel-hook))
 
 ;;;###autoload
-(defun org-clock-goto (&optional select)
+(defun org-clock-goto (&optional select norecord)
   "Go to the currently clocked-in entry, or to the most recently clocked one.
 With prefix arg SELECT, offer recently clocked tasks for selection."
   (interactive "@P")
@@ -1762,7 +1762,7 @@ With prefix arg SELECT, offer recently clocked tasks for selection."
 	      (setq recent t)
 	      (car org-clock-history))
 	     (t (error "No active or recent clock task")))))
-    (pop-to-buffer-same-window (marker-buffer m))
+    (pop-to-buffer-same-window (marker-buffer m) norecord)
     (if (or (< m (point-min)) (> m (point-max))) (widen))
     (goto-char m)
     (org-show-entry)
